@@ -5,8 +5,13 @@ import os
 from flask import Flask, request, render_template
 
 from flask import jsonify
+from model import db
 
 app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return {"hello": "world"}
 
 @app.route('/api/time')
 def get_current_time():
@@ -24,10 +29,14 @@ def handle_form():
     print("Simon Mukunga")
     print(file)
     
-    print("Simon Mukunga")
+    print("CREATE TABLE MATRETT")
     
+    db.create_all()
 
     return jsonify({
         'success': True,
         'file': 'Received'
     })
+
+    if __name__ == '__main__':
+        app.run(debug=True)
